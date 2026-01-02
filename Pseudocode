@@ -1,0 +1,32 @@
+FUNCTION encrypt(plaintext, key):
+    Change plaintext and key to all uppercase letters
+    Remove any non-letter characters from key
+    Make a repeated version of key to match the length of plaintext (skipping non-letters in plaintext)
+
+    Start with an empty result
+    FOR each letter in plaintext and matching letter in repeated key:
+        IF the plaintext letter is a letter:
+            Find how many steps to shift: add the position of plaintext letter and key letter in the alphabet
+            Wrap around if it goes past Z (like a circle)
+            Add the new letter to result
+        ELSE:
+            Add the plaintext letter as-is to result
+    
+    RETURN result
+END FUNCTION
+
+FUNCTION decrypt(ciphertext, key):
+    Change ciphertext and key to all uppercase letters
+    Remove any non-letter characters from key
+    Make a repeated version of key to match the length of ciphertext (skip non-letters in ciphertext)
+
+    Start with an empty result
+    FOR each letter in ciphertext and matching letter in repeated key:
+        IF the ciphertext letter is a letter:
+            Find how many steps to unshift: subtract the position of key letter from ciphertext letter in the alphabet
+            Wrap around if it goes before A (like a circle)
+            Add the new letter to result
+        ELSE:
+            Add the ciphertext letter as-is to result
+    
+    RETURN result
