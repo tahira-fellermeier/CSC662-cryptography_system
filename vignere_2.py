@@ -1,4 +1,4 @@
-def vigenere_encrypt(plaintext, key):
+def vigenere_encrypt():
     """
     Encrypts the plaintext using the Vigenere Cipher with the given key.
     
@@ -15,6 +15,11 @@ def vigenere_encrypt(plaintext, key):
     
     # Remove non-alphabetic characters from key for simplicity
     key = ''.join(c for c in key if c.isalpha())
+
+    # Encryption with step-by-step display
+    print(f"\nPlaintext: {plaintext}")
+    print(f"Key: {key}")
+    print("\nEncryption Process:")
         
     # Repeat key to match plaintext length (ignoring non-letters)
     key_repeated = ''
@@ -37,10 +42,17 @@ def vigenere_encrypt(plaintext, key):
             ciphertext += chr(c_index + ord('A'))
         else:
             ciphertext += p
-    
-    return ciphertext
 
-def vigenere_decrypt(ciphertext, key):
+        print(f"Key (repeated): {key_repeated}")
+        print(f"Ciphertext: {ciphertext}")
+
+    again = input("\nDo another operation? (Y/N): ").strip().upper()
+    if again != 'Y':
+        return False  # Signal to exit
+    return True  # Signal to continue
+    
+
+def vigenere_decrypt():
     """
     Decrypts the ciphertext using the Vigenere Cipher with the given key.
     
@@ -57,6 +69,11 @@ def vigenere_decrypt(ciphertext, key):
     
     # Remove non-alphabetic characters from key
     key = ''.join(c for c in key if c.isalpha())
+
+    # Decryption step-by-step display
+    print(f"\nCiphertext: {ciphertext}")
+    print(f"Key:       {key}")
+    print("\nDecryption Process:")
     
     # Repeat key to match ciphertext length (ignoring non-letters)
     key_repeated = ''
@@ -80,7 +97,13 @@ def vigenere_decrypt(ciphertext, key):
         else:
             plaintext += c
     
-    return plaintext
+    print(f"Key (repeated): {key_repeated}")
+    print(f"Plaintext:     {plaintext}")
+
+    again = input("\nDo another operation? (Y/N): ").strip().upper()
+    if again != 'Y':
+        return False  # Signal to exit
+    return True  # Signal to continue
 
 def analyze_key_strength(key):
     """Analyze and display key strength"""
