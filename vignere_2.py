@@ -94,7 +94,7 @@ if __name__ == "__main__":
                     print("Exiting program.")
                     break
             elif choice == '2':
-                continue_program = vigenere_encrypt()
+                continue_program = vigenere_decrypt()
                 if not continue_program:
                     print("Exiting program.")
                     break
