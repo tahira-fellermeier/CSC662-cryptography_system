@@ -82,6 +82,28 @@ def vigenere_decrypt(ciphertext, key):
     
     return plaintext
 
+def analyze_key_strength(key):
+    """Analyze and display key strength"""
+    key = ''.join(c for c in key.upper() if c.isalpha())
+    length = len(key)
+    unique_chars = len(set(key))
+
+    print(f"\nKey Analysis:")
+    print(f"  Length: {length} characters")
+    print(f"  Unique letters: {unique_chars}")
+
+    if length < 5:
+        strength = "WEAK"
+    elif length < 10:
+        strength = "MODERATE"
+    else:
+        strength = "STRONG"
+
+    print(f"Strength: {strength}")
+
+    if length < 8:
+        print("Recommendation: Use a key with at least 8 characters.")
+
 if __name__ == "__main__":
     while True:
         choice = input("Choose operation: (E)ncrypt or (D)ecrypt: ").strip().upper()
