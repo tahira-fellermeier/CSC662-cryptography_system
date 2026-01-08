@@ -1,4 +1,4 @@
-def vigenere_encrypt(plaintext, key):
+def vigenere_encrypt(plaintext, key, show_steps=True):
     """
     Encrypts the plaintext using the Vigenere Cipher with the given key.
     
@@ -15,6 +15,11 @@ def vigenere_encrypt(plaintext, key):
     
     # Remove non-alphabetic characters from key for simplicity
     key = ''.join(c for c in key if c.isalpha())
+
+    if show_steps:
+        print(f"\nPlaintext: {plaintext}")
+        print(f"Key: {key}")
+        print("\nEncryption Process:")
         
     # Repeat key to match plaintext length (ignoring non-letters)
     key_repeated = ''
@@ -37,6 +42,10 @@ def vigenere_encrypt(plaintext, key):
             ciphertext += chr(c_index + ord('A'))
         else:
             ciphertext += p
+
+    if show_steps:
+        print(f"Key (repeated): {key_repeated}")
+        print(f"Ciphertext: {ciphertext}")
     
     return ciphertext
 
