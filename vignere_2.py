@@ -83,55 +83,25 @@ def vigenere_decrypt(ciphertext, key):
     return plaintext
 
 if __name__ == "__main__":
-    while True:
-        choice = input("Choose operation: (E)ncrypt or (D)ecrypt: ").strip().upper()
-        
-        if choice == 'E':
-            # Prompt for plaintext until non-empty
-            plaintext = ""
-            while not plaintext:
-                plaintext = input("Enter the plaintext: ").strip()
-                if not plaintext:
-                    print("Plaintext cannot be empty. Please try again.")
-            
-            # Prompt for key until valid (contains at least one letter)
-            key = ""
-            while not key or not any(c.isalpha() for c in key):
-                key = input("Enter the key: ").strip()
-                if not key:
-                    print("Key cannot be empty. Please try again.")
-                elif not any(c.isalpha() for c in key):
-                    print("Key must contain at least one letter. Please try again.")
-            
-            encrypted = vigenere_encrypt(plaintext, key)
-            print(f"Encrypted: {encrypted}")
-        
-        elif choice == 'D':
-            # Prompt for ciphertext until non-empty
-            ciphertext = ""
-            while not ciphertext:
-                ciphertext = input("Enter the ciphertext: ").strip()
-                if not ciphertext:
-                    print("Ciphertext cannot be empty. Please try again.")
-            
-            # Prompt for key until valid (contains at least one letter)
-            key = ""
-            while not key or not any(c.isalpha() for c in key):
-                key = input("Enter the key: ").strip()
-                if not key:
-                    print("Key cannot be empty. Please try again.")
-                elif not any(c.isalpha() for c in key):
-                    print("Key must contain at least one letter. Please try again.")
-            
-            decrypted = vigenere_decrypt(ciphertext, key)
-            print(f"Decrypted: {decrypted}")
-        
-        else:
-            print("Invalid choice. Please enter 'E' for encrypt or 'D' for decrypt.")
-            continue  # Skip to next iteration if invalid
-        
-        # Ask if user wants to do another operation
-        again = input("Do another operation? (Y/N): ").strip().upper()
-        if again != 'Y':
-            print("Exiting program.")
-            break
+     while True:
+        display_menu()
+        choice = input("\nEnter your choice (1-3): ").strip()
+
+        try:
+            if choice == '1':
+                continue_program = vigenere_encrypt()
+                if not continue_program:
+                    print("Exiting program.")
+                    break
+            elif choice == '2':
+                continue_program = vigenere_encrypt()
+                if not continue_program:
+                    print("Exiting program.")
+                    break
+            elif choice == '3':
+                print("\nThank you for using Vigenère Cipher System!")
+                break
+            else:
+                print("❌ Invalid choice. Please select 1-5.")
+        except Exception as e:
+            print(f"❌ Error: {e}")
