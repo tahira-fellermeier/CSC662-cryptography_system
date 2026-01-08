@@ -45,6 +45,11 @@ def vigenere_encrypt():
 
         print(f"Key (repeated): {key_repeated}")
         print(f"Ciphertext: {ciphertext}")
+
+    again = input("\nDo another operation? (Y/N): ").strip().upper()
+    if again != 'Y':
+        return False  # Signal to exit
+    return True  # Signal to continue
     
 
 def vigenere_decrypt():
@@ -94,6 +99,11 @@ def vigenere_decrypt():
     
     print(f"Key (repeated): {key_repeated}")
     print(f"Plaintext:     {plaintext}")
+
+    again = input("\nDo another operation? (Y/N): ").strip().upper()
+    if again != 'Y':
+        return False  # Signal to exit
+    return True  # Signal to continue
 
 if __name__ == "__main__":
     while True:
