@@ -82,6 +82,16 @@ def vigenere_decrypt(ciphertext, key):
     
     return plaintext
 
+def display_menu():
+    """Display main menu"""
+    print("\n" + "="*50)
+    print("    VIGENÈRE CIPHER ENCRYPTION SYSTEM")
+    print("="*50)
+    print("1. Encrypt")
+    print("2. Decrypt")
+    print("3. Exit")
+    print("="*50)
+
 if __name__ == "__main__":
     while True:
         choice = input("Choose operation: (E)ncrypt or (D)ecrypt: ").strip().upper()
