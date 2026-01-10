@@ -1,4 +1,4 @@
-def vigenere_encrypt(plaintext, key):
+def vigenere_encrypt():
     """
     Encrypts the plaintext using the Vigenere Cipher with the given key.
     
@@ -17,6 +17,11 @@ def vigenere_encrypt(plaintext, key):
     key = ''.join(c for c in key if c.isalpha())
 
     analyze_key_strength(key)
+    
+    # Encryption with step-by-step display
+    print(f"\nPlaintext: {plaintext}")
+    print(f"Key: {key}")
+    print("\nEncryption Process:")
         
     # Repeat key to match plaintext length (ignoring non-letters)
     key_repeated = ''
@@ -39,10 +44,17 @@ def vigenere_encrypt(plaintext, key):
             ciphertext += chr(c_index + ord('A'))
         else:
             ciphertext += p
-    
-    return ciphertext
 
-def vigenere_decrypt(ciphertext, key):
+        print(f"Key (repeated): {key_repeated}")
+        print(f"Ciphertext: {ciphertext}")
+
+    again = input("\nDo another operation? (Y/N): ").strip().upper()
+    if again != 'Y':
+        return False  # Signal to exit
+    return True  # Signal to continue
+    
+
+def vigenere_decrypt():
     """
     Decrypts the ciphertext using the Vigenere Cipher with the given key.
     
@@ -59,6 +71,11 @@ def vigenere_decrypt(ciphertext, key):
     
     # Remove non-alphabetic characters from key
     key = ''.join(c for c in key if c.isalpha())
+
+    # Decryption step-by-step display
+    print(f"\nCiphertext: {ciphertext}")
+    print(f"Key:       {key}")
+    print("\nDecryption Process:")
     
     # Repeat key to match ciphertext length (ignoring non-letters)
     key_repeated = ''
@@ -82,7 +99,13 @@ def vigenere_decrypt(ciphertext, key):
         else:
             plaintext += c
     
-    return plaintext
+    print(f"Key (repeated): {key_repeated}")
+    print(f"Plaintext:     {plaintext}")
+
+    again = input("\nDo another operation? (Y/N): ").strip().upper()
+    if again != 'Y':
+        return False  # Signal to exit
+    return True  # Signal to continue
 
 def analyze_key_strength(key):
     """Analyze and display key strength"""
@@ -106,56 +129,36 @@ def analyze_key_strength(key):
     if length < 8:
         print("Recommendation: Use a key with at least 8 characters.")
 
+def display_menu():
+    """Display main menu"""
+    print("\n" + "="*50)
+    print("    VIGENÈRE CIPHER ENCRYPTION SYSTEM")
+    print("="*50)
+    print("1. Encrypt")
+    print("2. Decrypt")
+    print("3. Exit")
+    print("="*50)
+
 if __name__ == "__main__":
-    while True:
-        choice = input("Choose operation: (E)ncrypt or (D)ecrypt: ").strip().upper()
-        
-        if choice == 'E':
-            # Prompt for plaintext until non-empty
-            plaintext = ""
-            while not plaintext:
-                plaintext = input("Enter the plaintext: ").strip()
-                if not plaintext:
-                    print("Plaintext cannot be empty. Please try again.")
-            
-            # Prompt for key until valid (contains at least one letter)
-            key = ""
-            while not key or not any(c.isalpha() for c in key):
-                key = input("Enter the key: ").strip()
-                if not key:
-                    print("Key cannot be empty. Please try again.")
-                elif not any(c.isalpha() for c in key):
-                    print("Key must contain at least one letter. Please try again.")
-            
-            encrypted = vigenere_encrypt(plaintext, key)
-            print(f"Encrypted: {encrypted}")
-        
-        elif choice == 'D':
-            # Prompt for ciphertext until non-empty
-            ciphertext = ""
-            while not ciphertext:
-                ciphertext = input("Enter the ciphertext: ").strip()
-                if not ciphertext:
-                    print("Ciphertext cannot be empty. Please try again.")
-            
-            # Prompt for key until valid (contains at least one letter)
-            key = ""
-            while not key or not any(c.isalpha() for c in key):
-                key = input("Enter the key: ").strip()
-                if not key:
-                    print("Key cannot be empty. Please try again.")
-                elif not any(c.isalpha() for c in key):
-                    print("Key must contain at least one letter. Please try again.")
-            
-            decrypted = vigenere_decrypt(ciphertext, key)
-            print(f"Decrypted: {decrypted}")
-        
-        else:
-            print("Invalid choice. Please enter 'E' for encrypt or 'D' for decrypt.")
-            continue  # Skip to next iteration if invalid
-        
-        # Ask if user wants to do another operation
-        again = input("Do another operation? (Y/N): ").strip().upper()
-        if again != 'Y':
-            print("Exiting program.")
-            break
+     while True:
+        display_menu()
+        choice = input("\nEnter your choice (1-3): ").strip()
+
+        try:
+            if choice == '1':
+                continue_program = vigenere_encrypt()
+                if not continue_program:
+                    print("Exiting program.")
+                    break
+            elif choice == '2':
+                continue_program = vigenere_decrypt()
+                if not continue_program:
+                    print("Exiting program.")
+                    break
+            elif choice == '3':
+                print("\nThank you for using Vigenère Cipher System!")
+                break
+            else:
+                print("❌ Invalid choice. Please select 1-5.")
+        except Exception as e:
+            print(f"❌ Error: {e}")
