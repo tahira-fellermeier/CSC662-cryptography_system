@@ -16,6 +16,8 @@ def vigenere_encrypt():
     # Remove non-alphabetic characters from key for simplicity
     key = ''.join(c for c in key if c.isalpha())
 
+    analyze_key_strength(key)
+    
     # Encryption with step-by-step display
     print(f"\nPlaintext: {plaintext}")
     print(f"Key: {key}")
@@ -112,8 +114,8 @@ def analyze_key_strength(key):
     unique_chars = len(set(key))
 
     print(f"\nKey Analysis:")
-    print(f"  Length: {length} characters")
-    print(f"  Unique letters: {unique_chars}")
+    print(f"Length: {length} characters")
+    print(f"Unique letters: {unique_chars}")
 
     if length < 5:
         strength = "WEAK"
