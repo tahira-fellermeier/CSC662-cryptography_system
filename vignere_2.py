@@ -9,12 +9,14 @@ def vigenere_encrypt():
     Returns:
     str: The encrypted ciphertext.
     """
-    # Prompt for plaintext until non-empty
+    # Prompt for plaintext until non-empty1
     plaintext = ""
-    while not plaintext:
+    while not plaintext or not any(c.isalpha() for c in plaintext):
         plaintext = input("Enter the plaintext: ").strip()
         if not plaintext:
             print("Plaintext cannot be empty. Please try again.")
+        elif not any (c.isalpha() for c in plaintext):
+            print("Plaintext must contain at least one letter. Please try again.")
 
     # Prompt for key until valid (contains at least one letter)
     key = ""
@@ -84,10 +86,12 @@ def vigenere_decrypt():
     """
     # Prompt for ciphertext until non-empty
     ciphertext = ""
-    while not ciphertext:
+    while not ciphertext  or not any(c.isalpha() for c in ciphertext):
         ciphertext = input("Enter the ciphertext: ").strip()
         if not ciphertext:
             print("Ciphertext cannot be empty. Please try again.")
+        elif not any(c.isalpha() for c in ciphertext):
+            print("Ciphertext must contain at least one letter. Please try again.")
 
     # Prompt for key until valid (contains at least one letter)
     key = ""
@@ -196,6 +200,6 @@ if __name__ == "__main__":
                 print("\nThank you for using Vigenère Cipher System!")
                 break
             else:
-                print("❌ Invalid choice. Please select 1-5.")
+                print("❌ Invalid choice. Please select 1-3.")
         except Exception as e:
             print(f"❌ Error: {e}")
